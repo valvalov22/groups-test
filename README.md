@@ -11,6 +11,7 @@ https://vk-groups.netlify.app/
 + React
 + Typescript
 + VKUI
++ Vite
 
 ## Функционал проекта
 
