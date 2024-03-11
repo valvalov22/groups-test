@@ -1,30 +1,54 @@
-# React + TypeScript + Vite
+# Список сообществ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React Приложение, выводящее список сообществ
 
-Currently, two official plugins are available:
+## Демо проекта
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://vk-groups.netlify.app/
 
-## Expanding the ESLint configuration
+## Используемый стек
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
++ React
++ Typescript
++ VKUI
 
-- Configure the top-level `parserOptions` property like this:
+## Функционал проекта
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Основным функционалом является возможность фильтрации сообществ по:
+
++ Типу приватности, Открытое/Закрытое сообщество
++ Цвету аватара сообщества, также учтен вариант, если у сообщества нет цвета аватара по умолчанию
++ Друзьям в сообществе, если в сообществе есть друзья, то количество участников подчеркнуто снизу и при нажатии на участников будет появляться список друзей, при повторном нажатии список закрывается
+
+Дополнительный функционал:
+
+Реализован компонент поиска по сообществам
+
+## Клонирование репозитория
+
+```bash
+git clone https://github.com/valvalov22/groups-test.git
+# Клонирование репозитория
+npm install
+# Установка зависимостей
+npm run dev
+# Запуск сервера в режиме разработки
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Структура проекта
+
++ api
+..+ api.ts Функция для запроса к мок данным, возвращающая result 1 и заполненную data при успешном запросе и result 0 без data при ошибке
++ assets Здесь находятся placeholders для логотипов сообщества и друзей
++ components
+..+ GroupFilter Компонент, отрисовывающий список фильтрации
+..+ GroupList Компонент, отрисовывающий список сообществ
++ hooks
+..+ useFilterHandlers.ts Хук для управления состоянием фильтров
+..+ useGroupData.ts Основной хук, который взаимодействует с api и формирует сообщества
++ types Вынесены часто используемые типы
++ utils
+..+ declineWord.ts Функция, исправляющая окончания в зависимости от количества
+..+ filterGroups.ts Логика фильтрации
+..+ formatMembers.ts Преобразование окончаний слов, используется в GroupList, может использоваться и в других местах
+
